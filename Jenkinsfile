@@ -3,13 +3,13 @@ pipeline {
 
   environment {
     TF_WORKSPACE = "default"
-    AWS_REGION   = "us-east-1"
+    AWS_REGION   = "eu-north-1"
   }
 
   stages {
     stage('Checkout') {
       steps {
-        git url: 'https://your-repo-url.git', branch: 'main'
+        git url: 'https://github.com/cloudwavetechnologies/tf-vpc-subnet-creation-001.git', branch: 'Master'
       }
     }
 
