@@ -33,12 +33,12 @@ pipeline {
       }
     }
 
-    stage('Terraform Apply') {
-      steps {
-        input message: "Approve infrastructure changes?"
-        sh 'terraform apply tfplan.out'
-      }
-    }
+    // stage('Terraform Apply') {
+    //   steps {
+    //     input message: "Approve infrastructure changes?"
+    //     sh 'terraform apply tfplan.out'
+    //   }
+    // }
   }
 
   post {
