@@ -1,6 +1,8 @@
 pipeline {
   agent any
-
+  tools {
+    terraform 'terraform_1.9.6'
+  }
   environment {
     TF_WORKSPACE = "default"
     AWS_REGION   = "eu-north-1"
@@ -31,13 +33,13 @@ pipeline {
       }
     }
 
-    stage('Terraform Apply') {
-      steps {
-        input message: "Approve infrastructure changes?"
-        sh 'terraform apply tfplan.out'
-      }
-    }
-  }
+//     stage('Terraform Apply') {
+//       steps {
+//         input message: "Approve infrastructure changes?"
+//         sh 'terraform apply tfplan.out'
+//       }
+//     }
+//   }
 
   post {
     success {
