@@ -16,10 +16,10 @@ pipeline {
     }
 
     stage('Terraform Init') {
-      steps {
-        sh 'terraform init -backend-config=backend.tf'
-      }
-    }
+  steps {
+    sh 'terraform init'
+  }
+}
 
     stage('Terraform Validate') {
       steps {
