@@ -40,8 +40,20 @@ pipeline {
 
     stage('Terraform Apply') {
       steps {
-        input message: "Approve infrastructure changes?"
-        sh 'terraform apply tfplan.out'
+        script {
+          def userApproval = input(
+            id: 'ApplyApproval',
+            message: 'Do you want to apply these Terraform changes?',
+            parameters: [
+              booleanParam(defaultValue: false, description: 'Confirm to apply infrastructure changes', name: 'CONFIRM_APPLY')
+            ]
+          )
+          if (userApproval == true) {
+            sh 'terraform apply tfplan.out'
+          } else {
+            error("Terraform apply aborted by user.")
+          }
+        }
       }
     }
   }
@@ -51,7 +63,7 @@ pipeline {
       echo '✅ Terraform deployment completed successfully.'
     }
     failure {
-      echo '❌ Terraform deployment failed.'
+      echo '❌ Terraform deployment failed or was aborted.'
     }
   }
 }
