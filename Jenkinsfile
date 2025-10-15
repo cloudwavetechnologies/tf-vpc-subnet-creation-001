@@ -1,7 +1,7 @@
 pipeline {
   agent any
   tools {
-    terraform 'terraform_1.9.6'
+    terraform 'terraform_1.9.6_arm64'
   }
   environment {
     TF_WORKSPACE = "default"
@@ -33,12 +33,12 @@ pipeline {
       }
     }
 
-    // stage('Terraform Apply') {
-    //   steps {
-    //     input message: "Approve infrastructure changes?"
-    //     sh 'terraform apply tfplan.out'
-    //   }
-    // }
+    stage('Terraform Apply') {
+      steps {
+        input message: "Approve infrastructure changes?"
+        sh 'terraform apply tfplan.out'
+      }
+    }
   }
 
   post {
