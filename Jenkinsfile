@@ -1,11 +1,16 @@
 pipeline {
   agent any
+
   tools {
     terraform 'terraform_1.9.6_arm64'
   }
+
   environment {
-    TF_WORKSPACE = "default"
-    AWS_REGION   = "eu-north-1"
+    TF_WORKSPACE          = "default"
+    AWS_ACCOUNT_ID        = "093326771949"
+    AWS_REGION            = "eu-north-1"
+    AWS_ACCESS_KEY_ID     = credentials('aws-access-key-id')
+    AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
   }
 
   stages {
@@ -16,10 +21,10 @@ pipeline {
     }
 
     stage('Terraform Init') {
-  steps {
-    sh 'terraform init'
-  }
-}
+      steps {
+        sh 'terraform init'
+      }
+    }
 
     stage('Terraform Validate') {
       steps {
@@ -43,10 +48,10 @@ pipeline {
 
   post {
     success {
-      echo 'Terraform deployment completed successfully.'
+      echo '✅ Terraform deployment completed successfully.'
     }
     failure {
-      echo 'Terraform deployment failed.'
+      echo '❌ Terraform deployment failed.'
     }
   }
 }
