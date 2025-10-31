@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
-    bucket = "s3-terraform-state-bucket-000"
+    bucket = "statefile-bucket-002"
     key    = "Infra/simple-network.tfstate"
-    region = "eu-north-1"
+    region = "ap-south-1"
   }
 }

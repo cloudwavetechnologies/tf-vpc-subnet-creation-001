@@ -8,7 +8,7 @@ pipeline {
   environment {
     TF_WORKSPACE          = "default"
     AWS_ACCOUNT_ID        = "093326771949"
-    AWS_REGION            = "eu-north-1"
+    AWS_REGION            = "ap-south-1"
     AWS_ACCESS_KEY_ID     = credentials('aws-access-key-id')
     AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
   }

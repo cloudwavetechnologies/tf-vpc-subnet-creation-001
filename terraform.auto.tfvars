@@ -1,5 +1,5 @@
 vpc_name           = "simple-vpc"
 vpc_cidr           = "10.0.0.0/16"
 subnet_cidr        = "10.0.1.0/24"
-availability_zone  = "eu-north-1a"
+availability_zone  = "ap-south-1a"
 subnet_name        = "public-subnet-1"
